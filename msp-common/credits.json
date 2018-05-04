@@ -1,0 +1,108 @@
+{
+	"credits": [
+        {
+            "name": "Granting permissions in Postgres compared to MySQL",
+            "author": "CJ Estel",
+            "url": "https://techblog.covermymeds.com/databases/granting-permissions-in-postgres-compared-to-mysql/",
+            "remark": "Granting PostgreSQL permissions"
+        },
+		{
+			"name": "Indeterminate Preloader",
+			"author": "Andrew J. Holden",
+			"url": "https://codepen.io/holdencreative/pen/vEVbwv",
+			"remark": "A very simple and nice pure CSS loader animation",
+		},
+        {
+			"name": "IEX Trading",
+			"author": "IEX Trading",
+			"url": "https://iextrading.com/developer/docs/",
+            "remark": "Real-time stock quote data",
+        },
+/*
+{
+			"name": "Alpha Vantage",
+			"author": "Alpha Vantage",
+			"url": "https://www.alphavantage.co/",
+			"remark": "Real-time stock quote data after Yahoo! Finance terminated their service",
+		},
+*/
+        {
+			"name": "Sidebar Transitions",
+			"author": "Mary Lou",
+			"url": "https://tympanus.net/Development/SidebarTransitions/",
+			"remark": "The only good CSS3 slide-in sidebar I could find.",
+		},
+		{
+			"name": "Devicon",
+			"author": "Julien Monty",
+			"url": "http://konpa.github.io/devicon/",
+			"remark": "Footer icons as scalable fonts instead of SVG graphics",
+		},
+		{
+			"name": "Device and Viewport Size In JavaScript",
+			"author": "Ryan Van Etten",
+			"url": "http://ryanve.com/lab/dimensions/",
+			"remark": "Used for debugging viewport sizes.",
+		},
+		{
+			"name": "WHAT IS MY VIEWPORT SIZE AND PIXEL DENSITY?",
+			"author": "James Royal-Lawson",
+			"url": "http://beantin.se/what-is-my-viewport-size-pixel-density/",
+			"remark": "Used for debugging viewport sizes.",
+		},	
+		{
+			"name": "Viewports Units Calculator Online Tool",
+			"author": "Emil Olsson",
+			"url": "http://emilolsson.com/tools/vw-unit-calc-an-online-responsive-css-font-size-calculator/",
+			"remark": "Good information about responsive font sizes.",
+		},
+		{
+			"name": "Expanding Card Grid With Flexbox",
+			"author": "Naila Ahmad",
+			"url": "https://codepen.io/nailaahmad/pen/LGRxWJ",
+			"remark": "Exactly the type of grid/card behavior I was looking for.",
+		},
+		{
+			"name": "Chart.js",
+			"author": "Chart.js",
+			"url": "http://www.chartjs.org/",
+			"remark": "Excellent JavaScript chart library.",
+		},
+		{
+			"name": "PHP-MySQLi-Database-Class",
+			"author": "Josh Campbell",
+			"url": "https://github.com/joshcam/PHP-MySQLi-Database-Class",
+			"remark": "Thanks for a clean OOP database wrapper. I had this implemented using basic commands but it was all over the place.",
+		},
+		{
+			"name": "Material Floating Button",
+			"author": "Simone Bernabè",
+			"url": "https://codepen.io/simoberny/pen/pJZJQY",
+			"remark": "A very nice FAB implemented entirely in CSS.",
+		},
+		{
+			"name": "JQuery",
+			"author": "Google",
+			"url": "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js",
+			"remark": "This could have come from anywhere, really, but Google has it hosted so I chose theirs.",
+		},
+		{
+			"name": "W3School CSS",
+			"author": "W3Schools",
+			"url": "https://www.w3schools.com/w3css/4/w3.css",
+			"remark": "Thanks to W3 Schools for their Material Design CSS.",
+		},
+		{
+			"name": "Font Awesome",
+			"author": "Dave Gandy",
+			"url": "http://fontawesome.io",
+			"remark": "This provides the sandwich menu 'icon'.",
+		},
+		{
+			"name": "PluralSight",
+			"author": "Various",
+			"url": "http://www.pluralsight.com/",
+			"remark": "Numerous different learning lessons on web development",
+		},
+	]
+}
