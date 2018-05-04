@@ -1,0 +1,22 @@
+/*
+ * site-wide styling
+ */
+:root {
+	--main-bg-color: GhostWhite;
+	--woodpeckers-red: #8D1A1B;
+	--woodpeckers-stainless: #9E9898;
+}
+
+body {
+	margin: 0px;
+	height: 100%;
+	font-family: 'Roboto';
+
+	min-width: 420px;
+	width: auto !important;		/* Firefox willl set width as auto */
+	width: 420px;							/* IE6 ignores !important it will set width correctly */
+}
+
+$theme-colors: (
+    "primary": #8D1A1B
+)

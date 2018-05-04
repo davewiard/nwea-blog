@@ -1,0 +1,18 @@
+:root {
+  --color-facebook: #4C69BA;
+}
+
+.facebook-login {
+  background-color: var(--color-facebook);
+  border-radius: 5px;
+
+  background-image: linear-gradient(#4C69BA, #3B55A0);
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+  text-shadow: 0 -1px 0 #354C8C;
+}
+
+.google-login {
+  background-color: white;
+  border-radius: 5px;
+  margin: 5px 5px;
+}

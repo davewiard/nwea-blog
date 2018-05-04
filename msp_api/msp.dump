@@ -1,0 +1,1634 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.6
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE auth_group OWNER TO stock;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_id_seq OWNER TO stock;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_group_permissions OWNER TO stock;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_permissions_id_seq OWNER TO stock;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE auth_permission OWNER TO stock;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_permission_id_seq OWNER TO stock;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(30) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(30) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE auth_user OWNER TO stock;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_groups OWNER TO stock;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_groups_id_seq OWNER TO stock;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE auth_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_id_seq OWNER TO stock;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_user_permissions OWNER TO stock;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_user_permissions_id_seq OWNER TO stock;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
+
+
+--
+-- Name: broker; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE broker (
+    id integer NOT NULL,
+    name character varying(64)
+);
+
+
+ALTER TABLE broker OWNER TO postgres;
+
+--
+-- Name: broker_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE broker_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE broker_id_seq OWNER TO postgres;
+
+--
+-- Name: broker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE broker_id_seq OWNED BY broker.id;
+
+
+--
+-- Name: dividend; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE dividend (
+    id integer NOT NULL,
+    symbol_id smallint,
+    date date,
+    value numeric
+);
+
+
+ALTER TABLE dividend OWNER TO postgres;
+
+--
+-- Name: dividend_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE dividend_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE dividend_id_seq OWNER TO postgres;
+
+--
+-- Name: dividend_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE dividend_id_seq OWNED BY dividend.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE django_admin_log OWNER TO stock;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE django_admin_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_admin_log_id_seq OWNER TO stock;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE django_content_type OWNER TO stock;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE django_content_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_content_type_id_seq OWNER TO stock;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE django_migrations OWNER TO stock;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: stock
+--
+
+CREATE SEQUENCE django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_migrations_id_seq OWNER TO stock;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stock
+--
+
+ALTER SEQUENCE django_migrations_id_seq OWNED BY django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: stock
+--
+
+CREATE TABLE django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE django_session OWNER TO stock;
+
+--
+-- Name: portfolio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE portfolio (
+    id integer NOT NULL,
+    name character varying(64)
+);
+
+
+ALTER TABLE portfolio OWNER TO postgres;
+
+--
+-- Name: portfolio_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE portfolio_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE portfolio_id_seq OWNER TO postgres;
+
+--
+-- Name: portfolio_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE portfolio_id_seq OWNED BY portfolio.id;
+
+
+--
+-- Name: sector; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE sector (
+    id integer NOT NULL,
+    name character varying(64)
+);
+
+
+ALTER TABLE sector OWNER TO postgres;
+
+--
+-- Name: sector_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sector_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sector_id_seq OWNER TO postgres;
+
+--
+-- Name: sector_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE sector_id_seq OWNED BY sector.id;
+
+
+--
+-- Name: symbol; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE symbol (
+    id integer NOT NULL,
+    symbol character varying(16),
+    name character varying(128)
+);
+
+
+ALTER TABLE symbol OWNER TO postgres;
+
+--
+-- Name: symbol_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE symbol_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE symbol_id_seq OWNER TO postgres;
+
+--
+-- Name: symbol_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE symbol_id_seq OWNED BY symbol.id;
+
+
+--
+-- Name: trade; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE trade (
+    id integer NOT NULL,
+    trade_date date,
+    shares numeric,
+    price_per_share numeric,
+    pretax boolean,
+    broker_id smallint,
+    sector_id smallint,
+    symbol_id smallint,
+    portfolio_id smallint
+);
+
+
+ALTER TABLE trade OWNER TO postgres;
+
+--
+-- Name: trade_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE trade_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE trade_id_seq OWNER TO postgres;
+
+--
+-- Name: trade_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE trade_id_seq OWNED BY trade.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: broker id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY broker ALTER COLUMN id SET DEFAULT nextval('broker_id_seq'::regclass);
+
+
+--
+-- Name: dividend id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY dividend ALTER COLUMN id SET DEFAULT nextval('dividend_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_content_type ALTER COLUMN id SET DEFAULT nextval('django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_migrations ALTER COLUMN id SET DEFAULT nextval('django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: portfolio id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY portfolio ALTER COLUMN id SET DEFAULT nextval('portfolio_id_seq'::regclass);
+
+
+--
+-- Name: sector id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY sector ALTER COLUMN id SET DEFAULT nextval('sector_id_seq'::regclass);
+
+
+--
+-- Name: symbol id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY symbol ALTER COLUMN id SET DEFAULT nextval('symbol_id_seq'::regclass);
+
+
+--
+-- Name: trade id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY trade ALTER COLUMN id SET DEFAULT nextval('trade_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can add permission	2	add_permission
+5	Can change permission	2	change_permission
+6	Can delete permission	2	delete_permission
+7	Can add group	3	add_group
+8	Can change group	3	change_group
+9	Can delete group	3	delete_group
+10	Can add user	4	add_user
+11	Can change user	4	change_user
+12	Can delete user	4	delete_user
+13	Can add content type	5	add_contenttype
+14	Can change content type	5	change_contenttype
+15	Can delete content type	5	delete_contenttype
+16	Can add session	6	add_session
+17	Can change session	6	change_session
+18	Can delete session	6	delete_session
+\.
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('auth_permission_id_seq', 18, true);
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('auth_user_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: broker; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY broker (id, name) FROM stdin;
+1	Fidelity
+2	Robinhood
+\.
+
+
+--
+-- Name: broker_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('broker_id_seq', 7, true);
+
+
+--
+-- Data for Name: dividend; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY dividend (id, symbol_id, date, value) FROM stdin;
+1	1	2017-06-22	0.46
+2	4	2017-06-22	1.00
+3	5	2017-06-22	0.37
+4	19	2017-06-26	0.95
+5	17	2017-06-26	0.67
+6	11	2017-07-05	0.81
+7	13	2017-07-05	1.75
+8	5	2017-09-20	0.37
+9	1	2017-09-20	0.48
+10	4	2017-09-20	1.48
+11	17	2017-09-25	0.63
+12	15	2017-09-25	0.04
+13	18	2017-09-25	0.32
+14	14	2017-09-25	1.57
+15	12	2017-09-27	0.85
+16	11	2017-10-02	0.92
+17	13	2017-10-02	1.93
+18	13	2017-12-20	1.87
+19	11	2017-12-20	1.06
+20	4	2017-12-21	1.44
+21	3	2017-12-21	0.58
+22	1	2017-12-21	0.46
+23	5	2017-12-21	0.40
+25	8	2017-12-23	3.23
+24	9	2017-12-23	2.40
+26	14	2017-12-27	0.64
+27	12	2017-12-27	1.26
+28	17	2017-12-27	0.71
+29	18	2017-12-27	0.33
+30	16	2017-12-27	0.80
+31	15	2017-12-27	0.03
+32	19	2017-12-28	0.39
+33	6	2017-12-29	1.07
+34	10	2017-12-29	0.04
+\.
+
+
+--
+-- Name: dividend_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('dividend_id_seq', 34, true);
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('django_admin_log_id_seq', 1, false);
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+\.
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('django_content_type_id_seq', 6, true);
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2018-04-26 16:13:12.954712-07
+2	auth	0001_initial	2018-04-26 16:13:13.122184-07
+3	admin	0001_initial	2018-04-26 16:13:13.174117-07
+4	contenttypes	0002_remove_content_type_name	2018-04-26 16:13:13.22685-07
+5	auth	0002_alter_permission_name_max_length	2018-04-26 16:13:13.248946-07
+6	auth	0003_alter_user_email_max_length	2018-04-26 16:13:13.271271-07
+7	auth	0004_alter_user_username_opts	2018-04-26 16:13:13.288012-07
+8	auth	0005_alter_user_last_login_null	2018-04-26 16:13:13.309416-07
+9	auth	0006_require_contenttypes_0002	2018-04-26 16:13:13.31572-07
+10	sessions	0001_initial	2018-04-26 16:13:13.351221-07
+\.
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stock
+--
+
+SELECT pg_catalog.setval('django_migrations_id_seq', 10, true);
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: stock
+--
+
+COPY django_session (session_key, session_data, expire_date) FROM stdin;
+\.
+
+
+--
+-- Data for Name: portfolio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY portfolio (id, name) FROM stdin;
+1	FIS ESPP
+2	Robinhood
+\.
+
+
+--
+-- Name: portfolio_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('portfolio_id_seq', 4, true);
+
+
+--
+-- Data for Name: sector; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY sector (id, name) FROM stdin;
+1	Biotech
+2	Communication Services
+3	Consumer Discretionary
+5	Consumer Staples
+6	Developed ex-US
+7	Emerging Markets
+8	Energy
+9	Financial Services
+10	Health Care
+11	Industrials
+12	Materials
+13	Real Estate
+14	Technology
+15	Utilities
+22	Dividend
+24	Unknown
+\.
+
+
+--
+-- Name: sector_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('sector_id_seq', 24, true);
+
+
+--
+-- Data for Name: symbol; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY symbol (id, symbol, name) FROM stdin;
+1	FDIS	Fidelity MSCI Consumer Discretionary ETF
+2	FIS	Fidelity National Informatoin Services, Inc.
+3	FMAT	Fidelity MSCI Materials ETF
+4	FSTA	Fidelity MSCI Consumer Stables ETF
+5	FTEC	Fidelity MSCI Information Technology Index ETF
+6	PBD	PowerShares Global Clean Energy Portfolio
+7	PBE	PowerShares Dynamic Bitechnology & Genome Portfolio ETF
+8	SCHE	Schwab Emerging Markets Equity ETF
+9	SCHF	Schwab International Equity ETF
+10	SKYY	First Trust Cloud Computing ETF
+11	VFH	Vanguard Financials ETF
+12	VNQ	Vanguard REIT ETF
+13	VPU	Vanguard Utilities ETF
+14	VWO	Vanguard FSTE Emerging Markets
+15	XBI	SPDR S&P Biotech ETF
+16	XLI	Industrials Select Sector SPDR
+17	XLK	Technology Select Sector SPDR
+18	XLY	Consumer Discretionary Select Sector SPDR
+19	XT	iShares Exponential Technologies ETF
+20	SCHC	Schwab International Small Cap Equity ETF
+21	PSCT	PowerShares S&P SmallCap Information Technology Portfolio
+34	AIEQ	AI Powered Equity
+35	VTSAX	\N
+36	FHLC	Fidelity MSCI Health Care Index
+37	FIT	Fitbit Inc. Class A
+38	INDA	Ishares MSCI India
+\.
+
+
+--
+-- Name: symbol_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('symbol_id_seq', 38, true);
+
+
+--
+-- Data for Name: trade; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY trade (id, trade_date, shares, price_per_share, pretax, broker_id, sector_id, symbol_id, portfolio_id) FROM stdin;
+1	2017-03-07	3.0000	62.830	f	2	9	11	2
+2	2017-03-21	3.0000	53.530	f	2	14	17	2
+5	2017-04-28	4.0000	33.240	f	2	5	4	2
+6	2017-05-12	4.0000	35.420	f	2	3	1	2
+7	2017-05-26	3.0000	43.990	f	2	14	5	2
+8	2017-06-09	4.0000	32.400	f	2	14	19	2
+11	2017-07-07	3.0000	32.820	f	2	5	4	2
+12	2017-07-21	3.0000	47.850	f	2	1	7	2
+15	2017-08-18	2.0000	42.890	f	2	7	14	2
+16	2017-09-15	2.0000	69.540	f	2	11	16	2
+17	2017-10-02	3.0000	35.920	f	2	3	1	2
+18	2016-02-05	3.2356	59.852	t	1	9	2	1
+19	2016-02-19	2.3186	59.000	t	1	9	2	1
+20	2016-03-04	2.2727	60.194	t	1	9	2	1
+21	2016-03-18	2.1979	62.241	t	1	9	2	1
+22	2016-04-05	2.1407	63.903	t	1	9	2	1
+23	2016-04-20	2.1218	66.233	t	1	9	2	1
+24	2016-05-05	1.8887	70.823	t	1	9	2	1
+25	2016-05-20	3.8124	72.863	t	1	9	2	1
+26	2016-06-03	1.8548	74.880	t	1	9	2	1
+27	2016-06-20	1.9444	73.745	t	1	9	2	1
+29	2016-07-20	1.8052	77.527	t	1	9	2	1
+30	2016-08-05	1.7162	79.008	t	1	9	2	1
+31	2016-08-19	1.7815	78.923	t	1	9	2	1
+32	2016-09-02	1.7961	80.102	t	1	9	2	1
+33	2016-09-20	1.8405	76.532	t	1	9	2	1
+34	2016-10-05	1.8572	76.856	t	1	9	2	1
+35	2016-10-20	1.8768	75.468	t	1	9	2	1
+36	2016-11-04	3.7068	75.726	t	1	9	2	1
+37	2016-11-18	1.8154	77.254	t	1	9	2	1
+38	2016-12-05	1.8836	75.365	t	1	9	2	1
+39	2016-12-20	1.8471	76.380	t	1	9	2	1
+40	2017-01-05	1.8035	78.054	t	1	9	2	1
+41	2017-01-20	1.7966	79.723	t	1	9	2	1
+42	2017-02-03	1.7864	79.435	t	1	9	2	1
+43	2017-10-13	3.0000	42.900	f	2	14	10	2
+45	2017-10-27	4.0000	34.450	f	2	12	3	2
+46	2017-11-24	3.0000	34.500	f	2	6	9	2
+48	2017-11-13	9.0000	12.930	f	2	8	6	2
+49	2017-12-08	4.0000	27.360	f	2	7	8	2
+28	2016-07-05	1.8795	74.247	t	1	9	2	1
+51	2017-12-26	1.0000	76.760	f	2	14	21	2
+47	2017-11-27	1.0000	28.130	f	2	7	8	2
+14	2017-08-04	1.0000	43.140	f	2	7	14	2
+13	2017-08-04	1.0000	84.020	f	2	13	12	2
+10	2017-06-23	1.0000	46.620	f	2	1	7	2
+9	2017-06-23	1.0000	78.920	f	2	1	15	2
+4	2017-04-17	1.0000	113.530	f	2	15	13	2
+3	2017-04-05	1.0000	112.950	f	2	15	13	2
+50	2017-12-26	1.0000	36.130	f	2	6	20	2
+60	2017-08-31	1.0000	89.650	f	2	3	18	2
+61	2017-12-21	1.0000	0.000	f	2	14	37	2
+52	2018-01-05	6.0000	13.400	f	2	8	6	2
+57	2018-01-19	4.0000	27.370	f	2	14	34	2
+59	2018-02-02	3.0000	42.560	f	2	10	36	2
+62	2018-02-16	3.0000	35.180	f	2	6	38	2
+53	2018-01-05	2.0000	37.480	f	2	6	20	2
+\.
+
+
+--
+-- Name: trade_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('trade_id_seq', 62, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_key UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_key; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_key UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_key; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_key UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_key UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: broker broker_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY broker
+    ADD CONSTRAINT broker_name_key UNIQUE (name);
+
+
+--
+-- Name: broker broker_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY broker
+    ADD CONSTRAINT broker_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dividend dividend_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY dividend
+    ADD CONSTRAINT dividend_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_6743d5079abdd9c9_uniq; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_app_label_6743d5079abdd9c9_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: portfolio portfolio_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY portfolio
+    ADD CONSTRAINT portfolio_name_key UNIQUE (name);
+
+
+--
+-- Name: portfolio portfolio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY portfolio
+    ADD CONSTRAINT portfolio_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sector sector_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY sector
+    ADD CONSTRAINT sector_name_key UNIQUE (name);
+
+
+--
+-- Name: sector sector_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY sector
+    ADD CONSTRAINT sector_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: symbol symbol_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY symbol
+    ADD CONSTRAINT symbol_name_key UNIQUE (name);
+
+
+--
+-- Name: symbol symbol_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY symbol
+    ADD CONSTRAINT symbol_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: symbol symbol_symbol_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY symbol
+    ADD CONSTRAINT symbol_symbol_key UNIQUE (symbol);
+
+
+--
+-- Name: trade trade_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY trade
+    ADD CONSTRAINT trade_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_5812816d5751895d_like; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_group_name_5812816d5751895d_like ON auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_0e939a4f; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_group_permissions_0e939a4f ON auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_8373b171; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_group_permissions_8373b171 ON auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_417f1b1c; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_permission_417f1b1c ON auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_0e939a4f; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_user_groups_0e939a4f ON auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_e8701ad4; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_user_groups_e8701ad4 ON auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_8373b171; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_user_user_permissions_8373b171 ON auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_e8701ad4; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_user_user_permissions_e8701ad4 ON auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_b8e830dd7b34391_like; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX auth_user_username_b8e830dd7b34391_like ON auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_417f1b1c; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX django_admin_log_417f1b1c ON django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_e8701ad4; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX django_admin_log_e8701ad4 ON django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_de54fa62; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX django_session_de54fa62 ON django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_7b132901a3e15de0_like; Type: INDEX; Schema: public; Owner: stock
+--
+
+CREATE INDEX django_session_session_key_7b132901a3e15de0_like ON django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: auth_permission auth_content_type_id_4fdf47f0b1494647_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_content_type_id_4fdf47f0b1494647_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_group_id_494654bf7f911333_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_group_id_494654bf7f911333_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permission_id_5f423626d9f4d867_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permission_id_5f423626d9f4d867_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user__permission_id_4021dbdc83eb5fac_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user__permission_id_4021dbdc83eb5fac_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_4888b3e258456259_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_4888b3e258456259_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_18c60fe595216958_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_18c60fe595216958_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissi_user_id_90db091f2e88fa1_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissi_user_id_90db091f2e88fa1_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: dividend dividend_symbol_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY dividend
+    ADD CONSTRAINT dividend_symbol_id_fkey FOREIGN KEY (symbol_id) REFERENCES symbol(id);
+
+
+--
+-- Name: django_admin_log djan_content_type_id_308e281c7089216a_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT djan_content_type_id_308e281c7089216a_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_95eb70a8e2cda63_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: stock
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_95eb70a8e2cda63_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: trade trade_brokerid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY trade
+    ADD CONSTRAINT trade_brokerid_fkey FOREIGN KEY (broker_id) REFERENCES broker(id);
+
+
+--
+-- Name: trade trade_portfolioid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY trade
+    ADD CONSTRAINT trade_portfolioid_fkey FOREIGN KEY (portfolio_id) REFERENCES portfolio(id);
+
+
+--
+-- Name: trade trade_sectorid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY trade
+    ADD CONSTRAINT trade_sectorid_fkey FOREIGN KEY (sector_id) REFERENCES sector(id);
+
+
+--
+-- Name: trade trade_symbolid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY trade
+    ADD CONSTRAINT trade_symbolid_fkey FOREIGN KEY (symbol_id) REFERENCES symbol(id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+GRANT USAGE ON SCHEMA public TO stock;
+
+
+--
+-- Name: broker; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE broker TO stock;
+
+
+--
+-- Name: broker_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT USAGE ON SEQUENCE broker_id_seq TO stock;
+
+
+--
+-- Name: dividend; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE dividend TO stock;
+
+
+--
+-- Name: dividend_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT USAGE ON SEQUENCE dividend_id_seq TO stock;
+
+
+--
+-- Name: portfolio; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE portfolio TO stock;
+
+
+--
+-- Name: portfolio_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT USAGE ON SEQUENCE portfolio_id_seq TO stock;
+
+
+--
+-- Name: sector; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE sector TO stock;
+
+
+--
+-- Name: sector_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT USAGE ON SEQUENCE sector_id_seq TO stock;
+
+
+--
+-- Name: symbol; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE symbol TO stock;
+
+
+--
+-- Name: symbol_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT USAGE ON SEQUENCE symbol_id_seq TO stock;
+
+
+--
+-- Name: trade; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE trade TO stock;
+
+
+--
+-- Name: trade_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT USAGE ON SEQUENCE trade_id_seq TO stock;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: public; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public REVOKE ALL ON SEQUENCES  FROM postgres;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT USAGE ON SEQUENCES  TO stock;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR FUNCTIONS; Type: DEFAULT ACL; Schema: public; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public REVOKE ALL ON FUNCTIONS  FROM postgres;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON FUNCTIONS  TO stock;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: public; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public REVOKE ALL ON TABLES  FROM postgres;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT SELECT,INSERT,DELETE,UPDATE ON TABLES  TO stock;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

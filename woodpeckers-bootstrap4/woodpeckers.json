@@ -1,0 +1,20 @@
+{
+	"logoUrlSvg": "/images/logo.svg",
+	"logoUrlPng": "/images/logon.png",
+	
+	"menu": [
+		{
+			"Clamping": [
+				{
+					"name": "Clamping Square",
+					"url": "/clampingsquare6.html",
+					"imageUrl": "/images/button_clampingsquare.jpg"
+				},
+				{
+					"name": "Miter Clamp Set",
+					"url": "/clampset.html"
+					"imageUrl": "/images/button_miterclampingset.jpg"
+				}
+			],
+		}
+}
