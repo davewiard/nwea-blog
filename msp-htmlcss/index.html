@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <title>My Stock Portfolio :: HTML5, CSS, JS</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- W3 teal theme uses nice Material Design colors and style -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css" />
+
+    <!-- localized styling -->
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- web fonts -->
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Expletus+Sans" />
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
+
+    <!-- external JavaScript libraries -->
+<!--		<script src="js/modernizr.custom.js"></script>-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.js"></script>
+  </head>
+
+  <body>
+
+    <!-- title bar -->
+    <header>
+      <div class="w3-bar w3-theme w3-xlarge" id="st-trigger-effects">
+        <span class="w3-bar-item" id="title">My Stock Portfolio (v2)</span>
+      </div>
+    </header>
+    <div class="progress">
+      <div class="indeterminate"></div>
+    </div>
+
+    <main>
+
+      <div id="totals">
+        <div><span class="label">Total Equity Value</span></div>
+        <div><span id="allEquityValue">$0.00</span></div>
+
+        <div><span class="label">Total Return</span></div>
+        <div><span id="allTotalReturn">$0.00</span></div>
+
+        <div><span class="label">Today's Total Return</span></div>
+        <div><span id="allTodaysReturn">$0.00</span></div>
+      </div>
+
+      <div class="container" id="card-container">
+        <!--
+          -- This container is where the JavaScript-generated card data will
+          -- be pushed to. As the data is pulled from the server and processed
+          -- Material Design style cards will be generated and populated
+          -- dynamically.
+          -->
+      </div> <!-- .container -->
+
+      <div class="form-container">
+        <h3>Enter New Trade</h3>
+        <form action="" method="post">
+          <div class="row">
+            <div class="col-25"><label for="newTradeDate">Trade Date</label></div>
+            <div class="col-75"><input type="date" name="newTradeDate" id="newTradeDate" /></div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label for="trade-symbols-list">Symbol</label></div>
+            <div class="col-75">
+              <input list="newTradeSymbolDataList" name="trade-symbols-list" id="newTradeSymbolInput" />
+              <datalist id="newTradeSymbolDataList"></datalist>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label for="trade-sectors-list">Sector</label></div>
+            <div class="col-75">
+              <input list="newTradeSectorDataList" name="trade-sectors-list" id="newTradeSectorInput" />
+              <datalist id="newTradeSectorDataList"></datalist>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label for="trade-brokers-list">Broker</label></div>
+            <div class="col-75">
+              <input list="newTradeBrokerDataList" name="trade-brokers-list" id="newTradeBrokerInput" />
+              <datalist id="newTradeBrokerDataList"></datalist>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label for="trade-portfolios-list">Portfolio</label></div>
+            <div class="col-75">
+              <input list="newTradePortfolioDataList" name="trade-portfolios-list" id="newTradePortfolioInput" />
+              <datalist id="newTradePortfolioDataList"></datalist>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label for="newTradeShares">Shares</label></div>
+            <div class="col-75"><input type="number" id="newTradeShares" step="0.0001" min="0.0001" /></div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label for="newTradePricePerShare">Share Price</label></div>
+            <div class="col-75"><input type="number" id="newTradePricePerShare" step="0.0001" min="0.0100" /></div>
+          </div>
+          <div class="row">
+            <div class="col-25"><label for="newTradePreTax">Pre-Tax</label></div>
+            <div class="col-75"><input type="checkbox" id="newTradePreTax" /></div>
+          </div>
+          <div class="row">
+            <div class="col-50"><button id="newTradeCancel" />Reset</div>
+            <div class="col-50"><button id="newTradeSubmit" />Save</div>
+          </div>
+        </form>
+      </div>
+
+      <div id="snackbar"></div>
+
+    </main>
+
+    <footer>
+      <div class="footer" id="footer">
+        <div class="container-fluid">
+          <hr />
+          <div class="row">
+            <ul class="justify-content-center">
+              <li><a href="https://www.linkedin.com/in/davewiard/"
+	             data-toggle="tooltip"
+		     title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="https://codepen.io/davewiard/"
+	             data-toggle="tooltip"
+		     title="CodePen"><i class="fa fa-codepen"></i></a></li>
+              <li><a href="https://www.freecodecamp.org/davewiard"
+	             data-toggle="tooltip"
+		     title="freeCodeCamp"><i class="fa fa-free-code-camp"></i></a></li>
+              <li><a href="https://github.com/davewiard"
+	             data-toggle="tooltip"
+		     title="GitHub"><i class="fa fa-github"></i></a></li>
+            </ul>
+          </div>
+          <div class="row copyright">
+            <div class="written-by"><span>Dave Wiard &copy; 2017. All Rights Reserved</span></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="todo">
+      TODO (no particular order)
+      <ul>
+        <li>Implement login page</li>
+          <ul>
+            <li>Support OAuth logins</li>
+            <li>Support local/email logins</li>
+          </ul>
+        <li>Revamp JavaScript/jQuery to make it less linear and more dynamic</li>
+          <ul>
+            <li>Restructure it into methods and/or classes</li>
+            <li>Replace promises with observables (RxJS)</li>
+          </ul>
+        <li class="done">Implement IEX Tranding API</li>
+        <li class="done">Implement day's performance chart</li>
+        <li class="done">Change local PHP calls to AJAX REST calls</li>
+        <li>Replace PHP back-end API with Python</li>
+        <li class="done">Restructure back-end API's database query to use a single SELECT</li>
+        <li class="done">Fix JavaScript code to match newly structured API results</li>
+        <li class="done">Center page title on small screens</li>
+        <li class="done">Fix centering in footer</li>
+        <li>Expanding cards need to shift viewport to place card fully in view</li>
+        <ul>
+          <li>Current implmentation does not calculate proper height in page to scroll to</li>
+          <li>This is especially true if one card is open and second card is clicked</li>
+        </ul>
+        <li class="done">Change title background color to match light blue colors used elsewhere</li>
+        <li>Expand browser support</li>
+        <li class="done">Add a way to enter new trades</li>
+        <li>Entering new trade needs a lot of optimization</li>
+        <li>Entering new trade needs much better error handling</li>
+        <li class="done">Cosmetic fix: one decimal place on dollar figures needs to be two</li>
+        <li>Set interval to automatically refresh the data every 10 minutes</li>
+        <li class="done">Fix total return colors</li>
+        <li class="done">Adjust title bar color to reflect day's returns</li>
+        <li>Adjust JavaScript styling to recommended style guide. Google or Airbnb?</li>
+        <li>Sort the Broker list in Enter New Trade form</li>
+        <li>Sort the Portfolio list in Enter New Trade form</li>
+        <li>Sort the Sector list in Enter New Trade form</li>
+      </ul>
+    </div>
+
+    <!-- for data handling -->
+    <script src="js/overview.js"></script>
+    <script src="js/submitNewTrade.js"></script>
+
+    <!-- for expanding/collapsing cards -->
+    <script src="js/card.js"></script>
+  </body>
+</html>
