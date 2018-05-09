@@ -150,15 +150,16 @@
       TODO (no particular order)
       <ul>
         <li>Implement login page</li>
-          <ul>
-            <li>Support OAuth logins</li>
-            <li>Support local/email logins</li>
-          </ul>
+        <ul>
+          <li>Support OAuth logins</li>
+          <li>Support local/email logins</li>
+        </ul>
         <li>Revamp JavaScript/jQuery to make it less linear and more dynamic</li>
-          <ul>
-            <li>Restructure it into methods and/or classes</li>
-            <li>Replace promises with observables (RxJS)</li>
-          </ul>
+        <ul>
+          <li>Restructure it into methods and/or classes (ES6)</li>
+          <li>Replace promises with observables (RxJS)</li>
+          <li>Implement unit testing during restructure</li>
+        </ul>
         <li class="done">Implement IEX Tranding API</li>
         <li class="done">Implement day's performance chart</li>
         <li class="done">Change local PHP calls to AJAX REST calls</li>
@@ -173,10 +174,14 @@
           <li>This is especially true if one card is open and second card is clicked</li>
         </ul>
         <li class="done">Change title background color to match light blue colors used elsewhere</li>
-        <li>Expand browser support</li>
+        <li>Expand browser support beyond Chrome</li>
         <li class="done">Add a way to enter new trades</li>
-        <li>Entering new trade needs a lot of optimization</li>
+        <li>Entering new trade needs a lot of optimization on the back end</li>
         <li>Entering new trade needs much better error handling</li>
+        <ul>
+          <li>Add front-end error handling before submission</li>
+          <li>Add back-end error handling surrounding database transactions</li>
+        </ul>
         <li class="done">Cosmetic fix: one decimal place on dollar figures needs to be two</li>
         <li>Set interval to automatically refresh the data every 10 minutes</li>
         <li class="done">Fix total return colors</li>
