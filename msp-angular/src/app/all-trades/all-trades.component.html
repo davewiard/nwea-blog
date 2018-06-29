@@ -1,3 +1,83 @@
-<p>
-  all-trades works!
-</p>
+<!-- this section is for totals -->
+<section class="mb-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body blue-grey lighten-5">
+              <div class="row">
+                <div class="col-6"><span class="pull-right">Total Equity</span></div>
+                <div class="col-6"><span>${{ totalEquity }}</span></div>
+              </div>
+              <div class="row">
+                <div class="col-6"><span class="pull-right">Total Return</span></div>
+                <div class="col-6"><span class="msp-text-bold" [ngClass]="(totalReturn) ? 'msp-text-gain' : 'msp-text-loss'">${{ totalReturn }}</span></div>
+              </div>
+              <div class="row">
+                <div class="col-6"><span class="pull-right">Today's Total Return</span></div>
+                <div class="col-6"><span class="msp-text-bold" [ngClass]="(todaysReturn) ? 'msp-text-gain' : 'msp-text-loss'">${{ todaysReturn }}</span></div>
+              </div>
+            </div> <!-- .card-body -->
+          </div> <!-- .card -->
+        </div><!-- .col-12 -->
+      </div> <!-- .row -->
+    </div> <!-- .container -->
+  </section>
+  
+  <!-- this section is for all the cards -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" *ngFor="let stock of stocks">
+          <div class="card mb-4">
+  
+            <div class="card-header" [ngClass]="(stock.todaysReturn >= 0.0) ? 'msp-bg-gain' : 'msp-bg-loss'">
+              <div class="row">
+                <div class="col-8"><h4 class="card-title msp-text-bold">{{ stock.symbol }}</h4></div>
+                <div class="col-4"><span class="pull-right msp-text-bold">${{ stock.price }}</span></div>
+              </div>
+              <div class="row">
+                <div class="col-8"><span class="card-subtitle"><span>{{ stock.shares }}</span> Shares</span></div>
+                <div class="col-4"><span class="pull-right">${{ stock.todaysChange }} ()</span></div>
+              </div>
+            </div>
+  
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 msp-stock-name">
+                  <span class="msp-text-bold">{{ stock.name }}</span>
+                </div>
+              </div>
+  
+              <div class="row msp-blank-row"></div> <!-- for aesthetics -->
+  
+              <div class="row">
+                <div class="col-6"><span>Equity Value</span></div>
+                <div class="col-6"><span class="pull-right">${{ stock.equityValue }}</span></div>
+              </div>
+  
+              <div class="row">
+                <div class="col-6"><span>Total Return</span></div>
+                <div class="col-6"><span class="pull-right">${{ stock.totalReturn }}</span></div>
+              </div>
+  
+              <div class="row">
+                <div class="col-6"><span>Today's Return</span></div>
+                <div class="col-6"><span class="pull-right">${{ stock.todaysReturn }}</span></div>
+              </div>
+  
+              <div class="row msp-blank-row"></div> <!-- for aesthetics -->
+  
+              <div class="row">
+                <div class="col-12">
+                  <span>chart goes here</span>
+                </div>
+              </div>
+            </div> <!-- .card-body -->
+  
+          </div> <!-- .card .mg-4 -->
+        </div> <!-- .col-xs-12 .col-sm-6 .col-lg-4 -->
+      </div> <!-- .row -->
+    </div> <!-- .container -->    
+  </section>
+  

@@ -1,0 +1,33 @@
+@import '../../../node_modules/angular-bootstrap-md/scss/core/_colors.scss';
+
+.msp-bg-gain {
+  background-color: $green-darken-3;
+  color: $white-base;
+}
+
+.msp-bg-loss {
+  background-color: $red-darken-4;
+  color: $white-base;
+}
+
+.msp-text-gain {
+  color: $green-darken-3;
+}
+
+.msp-text-loss {
+  color: $red-darken-4;
+}
+
+.msp-text-bold {
+  font-weight: bold;
+}
+
+.msp-stock-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.msp-blank-row {
+  height: 1em;
+}

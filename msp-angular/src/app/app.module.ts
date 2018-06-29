@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DividendsComponent } from './dividends/dividends.component';
 import { AllTradesComponent } from './all-trades/all-trades.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { TodoComponent } from './todo/todo.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { AllTradesComponent } from './all-trades/all-trades.component';
     AppComponent,
     HomeComponent,
     DividendsComponent,
-    AllTradesComponent
+    AllTradesComponent,
+    NavbarComponent,
+    TodoComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

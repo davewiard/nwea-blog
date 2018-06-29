@@ -1,9 +1,9 @@
-<ul>
-  <li><a routerLink="home">Home</a></li>
-  <li><a routerLink="all-trades">All Trades</a></li>
-  <li><a routerLink="dividends">Dividends</a></li>
-</ul>
+<app-navbar></app-navbar>
 
-<app-home></app-home>
+<div style="margin-top: 100px;">
+  <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
+<app-footer></app-footer>
+
+<app-todo></app-todo>
