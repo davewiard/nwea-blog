@@ -33,7 +33,7 @@
 
           <div class="card-header" [ngClass]="(stock.todaysReturn >= 0.0) ? 'msp-bg-gain' : 'msp-bg-loss'">
             <div class="row">
-              <div class="col-8"><h4 class="card-title msp-text-bold">{{ stock.symbol }}</h4></div>
+              <div class="col-8"><h4 class="card-title msp-text-bold">{{ stock.symbol_info.symbol }}</h4></div>
               <div class="col-4"><span class="pull-right msp-text-bold">${{ stock.price }}</span></div>
             </div>
             <div class="row">
@@ -45,7 +45,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 msp-stock-name">
-                <span class="msp-text-bold">{{ stock.name }}</span>
+                <span class="msp-text-bold">{{ stock.symbol_info.name }}</span>
               </div>
             </div>
 
