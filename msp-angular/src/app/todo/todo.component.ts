@@ -16,6 +16,8 @@ export class TodoComponent implements OnInit {
     { text: 'Create base navbar structure', done: true },
     { text: 'Create base routine structure', done: true },
     { text: 'Replace PostgreSQL database with MongoDB' },
+    { text: 'Get trade data from API' },
+    { text: 'Collapse card content and expand on-click' },
     { text: 'HOME: Calculate daily change as percentage for display' },
     { text: 'HOME: Add chart.js charts to each card' },
     { text: 'HOME: Pipe all numeric figures to maintain exact number of decimal places' },
