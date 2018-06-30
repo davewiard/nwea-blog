@@ -15,7 +15,12 @@ export class TodoComponent implements OnInit {
     { text: 'Create base card structure', done: true },
     { text: 'Create base navbar structure', done: true },
     { text: 'Create base routine structure', done: true },
-    { text: 'Add chart.js charts to each card' },
+    { text: 'Replace PostgreSQL database with MongoDB' },
+    { text: 'HOME: Calculate daily change as percentage for display' },
+    { text: 'HOME: Add chart.js charts to each card' },
+    { text: 'HOME: Pipe all numeric figures to maintain exact number of decimal places' },
+    { text: 'ALL-TRADES: Calculate daily change as percentage for display' },
+    { text: 'ALL-TRADES: Pipe all numeric figures to maintain exact number of decimal places' },
   ];
 
   constructor() { }
