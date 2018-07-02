@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # My Stock Portfolio :: HTML | CSS | JavaScript
 
 ## Background
@@ -23,7 +22,3 @@ I started this project as a way of learning about HTML5, CSS3, and JavaScript so
   * The second version got data from Alpha Vantage but I had issues with stability
   * The third (and current) version gets data from IEX Trading
 * A login page would be created/used eventually but as this is a personal project with limited external visibility I decided to make the login page a low priority item
-=======
-# Projects
-All my personal projects
->>>>>>> master
