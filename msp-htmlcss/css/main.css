@@ -468,22 +468,6 @@ input[type=checkbox] {
 
 
 /*
- * TODO list styling
- */
-.todo {
-  color: #fff;
-  width: 75%;
-  margin: auto;
-  margin-top: 3em;
-  font-weight: bold;
-}
-
-.todo .done {
-  font-style: italic;
-  color: var(--color-grey-700);
-}
-
-/*
  * snackbar (toast) styling
  */
 /* position it at the bottom and in the middle of the screen */
