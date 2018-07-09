@@ -18,7 +18,7 @@ $('#newTradeCancel').click(function(e) {
 });
 
 
-/*
+/**
  * Add a class to the given object. If the given value is > 0.00
  * the color will be green, otherwise it will be red.
  */
@@ -402,10 +402,20 @@ $.ajax({
   setCurrencyTextColor(allTodaysReturn, $('#allTodaysReturn'), ["text-green", "text-red"]);
   $('#allTodaysReturn').text('$' + Math.abs(allTodaysReturn).toFixed(2));
 
-  if (parseFloat(allTodaysReturn) > parseFloat(0.00)) {
-    $('#st-trigger-effects').addClass('bg-green');
-  } else {
-    $('#st-trigger-effects').addClass('bg-red');
+  /* set the footer line color */
+  setCurrencyTextColor(allTodaysReturn, $('#footer-separator'), ["border-green", "border-red"]);
+
+  /* set the background color */
+  setCurrencyTextColor(allTodaysReturn, $('#st-trigger-effects'), ["bg-green", "bg-red"]);
+
+  /* set the footer link hover color */
+  let links = $('#footer a');
+  for (let i = 0; i < links.length; i++) {
+    if (parseFloat(allTodaysReturn) > parseFloat(0.00)) {
+      links[i].className = "text-green";
+    } else {
+      links[i].className = "text-red";
+    }
   }
 
   // change the display of each card to indicate the data has
