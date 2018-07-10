@@ -1,63 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100 no-js">
-	<head>
-		<title>Demo :: Login Page</title>
+<html>
+  <head>
+    <title>Davd Wiard's NWEA Blog Post Demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- external styling libraries -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-		<!-- fonts -->
-		<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Roboto" />
-		<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- internal styling -->
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
 
-		<!-- external stylesheets -->
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css" rel="stylesheet" />
+  <body class="bg-dark">
 
-		<link rel="stylesheet" href="styles.css" />
-	</head>
+    <!-- navbar -->
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark nwea-bg-primary text-dark">
+        <a class="navbar-brand" href="#">Dave Wiard's NWEA Blog Post Demo</a>
+      </nav>
+    </div>
 
-	<body class="h-100">
+    <main>
 
-		<div class="container h-100">
+      <div class="container">
+        <div class="jumbotron">
+          <h1>NWEA Blog Demo</h1>
+          <p>
+            This is a project demonstrating the submission and retrieval of
+            blog post entries. Refer to the
+            <a href="https://github.com/nwea-techops/blogpostapi">blogpostapi</a>
+            repository on GitHub for deailts of the project.
+          </p>
+        </div>
 
-			<div class="d-flex align-items-center flex-column justify-content-center h-100" id="header">
-				<h1 class="display-4">Login</h1>
-				<form>
-					<div class="form-group">
-						<div class="row">
-							<div class="col-6">
-								<a class="btn btn-block btn-large btn-social btn-google text-white">
-									<span class="fa fa-google"></span> Google
-								</a>
-							</div>
-							<div class="col-6">
-								<a class="btn btn-block btn-large btn-social btn-facebook text-white">
-									<span class="fa fa-facebook"></span> Facebook
-								</a>
-							</div>
-						</div>
-					</div>
+        <div class="card">
+          <div class="card-header bg-secondary text-white">
+            <h5>New Blog Post</h5>
+          </div>
 
-					<div class="form-group">
-						<input class="form-control form-control-lg" placeholder="Email" type="text">
-					</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label class="control-label" for="newBlogTitle">Title</label>
+                  <input name="newBlogTitle" class="form-control" placeholder="Blog Post Title" type="text" />
+                </div>
+              </div>
+            </div>
 
-					<div class="form-group">
-						<input class="form-control form-control-lg" placeholder="Password" type="password">
-					</div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label class="control-label" for="newBlogBody">Body</label>
+                  <textarea name="newBlogBody" class="form-control" placeholder="Blog post body" rows="4"></textarea>
+                </div>
+              </div>
+            </div>
 
-					<div class="form-group">
-						<button class="btn btn-info btn-lg btn-block">Sign In</button>
-					</div>
-				</form>
-			</div>
+            <div class="row">
+              <div class="col">
+                <button id="newBlogSubmit" class="btn btn-primary btn-lg btn-block info">Submit</button>
+              </div>
+            </div>
+          </div> <!-- .card-body -->
+        </div> <!-- .card -->
+      </div> <!-- .container -->
 
-		</div> <!-- .container -->
+      <div class="container" id="allBlogEntries">
 
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"><</script>
+        <div class="row">
+          <!-- blog entry cards will be injected here -->
+        </div> <!-- .row -->
 
-	</body>
+      </div> <!-- .container -->
+
+      <!-- The snackbar (for Android toast-style messages) -->
+      <div id="snackbar"></div>
+
+    </main>
+
+
+    <footer class="mainfooter bg-secondary" role="contentinfo">
+      <div class="footer-top p-y-2">
+        <div class="container-fluid">
+          <div class="row">
+            <ul class="justify-content-center">
+              <li><a href="https://www.linkedin.com/in/davewiard/" data-toggle="tooltip" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="https://codepen.io/davewiard/" data-toggle="tooltip" title="CodePen"><i class="fa fa-codepen"></i></a></li>
+              <li><a href="https://www.freecodecamp.org/davewiard" data-toggle="tooltip" title="freeCodeCamp"><i class="fa fa-free-code-camp"></i></a></li>
+              <li><a href="https://github.com/davewiard" data-toggle="tooltip" title="GitHub"><i class="fa fa-github"></i></a></li>
+            </ul>
+          </div>
+          <div class="row copyright">
+            <div class="written-by"><span>Dave Wiard &copy; 2018. All Rights Reserved</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json2html/1.2.0/json2html.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="./js/nwea-blog.js"></script>
+  </body>
+
 </html>
